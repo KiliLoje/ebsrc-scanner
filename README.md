@@ -1,4 +1,4 @@
-# ebsrc Borwser
+# ebsrc scanner
 
 A small script to browse ebsrc-to-listing.   
 
