@@ -1,26 +1,26 @@
 # ebsrc Borwser
 
-A small script to browse ebsrc-to-listing.
+A small script to browse ebsrc-to-listing.   
 
 ---
 
 ### Compiling
 
-Please compile this with C++17 or higher.
+Please compile this with C++17 or higher.   
 
 ---
 
 ### Usage
 
-Make a .txt file with the text that you want to search for.
-Like so :
+Make a .txt file with the text that you want to search for.   
+Like so :   
 
     SBC #$50
     AND #$007F
 
-Then execute the binary :
-`./ebsrc-searcher /path/to/ebsrc-to-listing /path/to/target-text.txt`
-You will get an output similar to this :
+Then execute the binary :   
+`./ebsrc-searcher /path/to/ebsrc-to-listing /path/to/target-text.txt`   
+You will get an output similar to this :   
 
     >>> unknown/EF/EF01D2.asm
       EF01F5: E9 50 00        SBC #$50
@@ -54,10 +54,10 @@ You will get an output similar to this :
       C4E5E9: 29 7F 00        AND #$007F
     Successfully written links to ebsrc_link.txt
 
-You'd have spotted that last line `Successfully written links to ebsrc_link.txt`
-The program generates links to the specific portion of code spotted inside ebsrc.
+You'd have spotted that last line `Successfully written links to ebsrc_link.txt`   
+The program generates links to the specific portion of code spotted inside ebsrc.   
 
-ebsrc_text.txt will look similar to this :
+ebsrc_text.txt will look similar to this :   
 
     https://github.com/Herringway/ebsrc/blob/main/src/unknown/EF/EF01D2.asm#L19-L20
     https://github.com/Herringway/ebsrc/blob/main/src/unknown/C4/C43E31.asm#L38-L39
