@@ -1,7 +1,8 @@
 # ebsrc scanner
 
 A small script to scan ebsrc-to-listing.   
-This is pure spaghetti code. And there is like no comments at all for now so yeah... I'll likely add a few more comments soon   
+   
+This is pure spaghetti code, good luck to anyone wanting to modify this (tho it's a single file project, it shouldn't be *that* hard)   
 
 ---
 
