@@ -62,13 +62,6 @@ You will get an output similar to this :
       C4E5E9: 29 7F 00        AND #$007F
     Successfully written links to ebsrc_link.txt
 
-You'd have spotted that last line `Successfully written links to ebsrc_link.txt`   
-The program generates links to the specific portion of code spotted inside ebsrc.   
-
-ebsrc_text.txt will look similar to this :   
-
-    ebsrc_text.txt
-
     https://github.com/Herringway/ebsrc/blob/main/src/unknown/EF/EF01D2.asm#L19-L20
     https://github.com/Herringway/ebsrc/blob/main/src/unknown/C4/C43E31.asm#L38-L39
     https://github.com/Herringway/ebsrc/blob/main/src/unknown/C4/C440B5.asm#L25-L26
@@ -79,3 +72,9 @@ ebsrc_text.txt will look similar to this :
     https://github.com/Herringway/ebsrc/blob/main/src/unknown/C4/C4827B.asm#L16-L17
     https://github.com/Herringway/ebsrc/blob/main/src/unknown/C4/C4999B.asm#L9-L10
     https://github.com/Herringway/ebsrc/blob/main/src/ending/render_cast_name_text.asm#L51-L52
+
+    Successfully written data at ebscr_data.txt
+    Successfully written data at ebscr_links.txt
+
+The data gets written to ebscr_data.txt and the links to ebscr_links.txt   
+
