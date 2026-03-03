@@ -20,6 +20,7 @@ This *should* compile :
 ### Usage
 
 Make a .txt file with the text that you want to search for.   
+Note that the program will search for consecutive lines in ebsrc-to-listing similar to your .txt file. Emphasis on consecutive.   
 This is an example :   
 
     target-text.txt
