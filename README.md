@@ -60,7 +60,6 @@ You will get an output similar to this :
     >>> ending/render_cast_name_text.asm
       C4E5E6: E9 50 00        SBC #$50
       C4E5E9: 29 7F 00        AND #$007F
-    Successfully written links to ebsrc_link.txt
 
     https://github.com/Herringway/ebsrc/blob/main/src/unknown/EF/EF01D2.asm#L19-L20
     https://github.com/Herringway/ebsrc/blob/main/src/unknown/C4/C43E31.asm#L38-L39
