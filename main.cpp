@@ -5,6 +5,24 @@
 #include <vector>
 namespace fs = std::filesystem;
 
+bool write_to_file(const std::string &path, std::vector<std::string> data) {
+  std::ofstream file;
+  file.open(path);
+
+  if (!file.is_open()) {
+    std::cerr << "Error : couldn't create file at " << path << "\n";
+    return false;
+  }
+
+  for (const std::string &line : data) {
+    file << line << "\n";
+  }
+  std::cout << "Successfully written data at " << path << "\n";
+
+  file.close();
+  return true;
+}
+
 // construct the github link
 std::string github_link_constructor(std::string listing_file, int line_index,
                                     int nb_of_instruction) {
@@ -26,8 +44,10 @@ std::string github_link_constructor(std::string listing_file, int line_index,
 // scan a file and return a set of ebsrc github links that points to the target
 // instrucion set
 std::vector<std::string>
-scan_file(std::ifstream &file,
-          const std::vector<std::string> &instruction_set) {
+scan_file(std::ifstream &file, const std::vector<std::string> &instruction_set,
+          std::vector<std::string> ebscr_data) {
+
+  // intitialize variables
   int instruction_index = 0;
   int line_index = 1;
   std::vector<std::string> addresses{};
@@ -38,12 +58,14 @@ scan_file(std::ifstream &file,
   std::vector<std::string> links{};
 
   while (std::getline(file, line)) {
+    // if every instructions are found
     if (instruction_index >= instruction_set.size()) {
       links.push_back(github_link_constructor(listing_file, line_index,
                                               instruction_set.size()));
 
       for (const std::string &instruction : addresses) {
         std::cout << instruction << "\n";
+        ebscr_data.push_back(instruction);
       }
 
       instruction_index = 0;
@@ -75,7 +97,8 @@ scan_file(std::ifstream &file,
 // links
 std::vector<std::string>
 scan_dir(const fs::directory_entry &entry,
-         const std::vector<std::string> &instruction_set) {
+         const std::vector<std::string> &instruction_set,
+         std::vector<std::string> &ebscr_data) {
   if (!entry.is_regular_file()) {
     return {};
   }
@@ -83,7 +106,7 @@ scan_dir(const fs::directory_entry &entry,
   std::vector<std::string> links;
   std::ifstream file(entry.path());
 
-  links = scan_file(file, instruction_set);
+  links = scan_file(file, instruction_set, ebscr_data);
 
   return links;
 }
@@ -117,6 +140,7 @@ int main(int argc, char **argv) {
 
   std::string instruction;
   std::vector<std::string> instruction_set{};
+  std::vector<std::string> ebscr_data{};
 
   while (std::getline(instruction_set_file, instruction)) {
     instruction_set.push_back(instruction);
@@ -130,25 +154,23 @@ int main(int argc, char **argv) {
   std::vector<std::string> links{};
 
   for (const auto &entry : fs::recursive_directory_iterator(DIR_PATH)) {
-    std::vector<std::string> links_in_file = scan_dir(entry, instruction_set);
+    std::vector<std::string> links_in_file =
+        scan_dir(entry, instruction_set, ebscr_data);
     for (const std::string &link : links_in_file) {
       links.push_back(link);
     }
   }
-  std::ofstream file;
-  file.open("ebsrc_link.txt");
 
-  if (!file.is_open()) {
-    std::cerr << "Error : couldn't create file ebsrc_link.txt\n";
+  std::cout << "\n";
+  for (const std::string &link : links)
+    std::cout << link << "\n";
+  std::cout << "\n";
+
+  if (!write_to_file("ebscr_data.txt", ebscr_data))
     return 1;
-  }
 
-  for (const std::string &link : links) {
-    file << link << "\n";
-  }
-  std::cout << "Successfully written links to ebsrc_link.txt\n";
-
-  file.close();
+  if (!write_to_file("ebscr_links.txt", links))
+    return 1;
 
   return 0;
 }
