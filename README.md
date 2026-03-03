@@ -29,7 +29,8 @@ This is an example :
     AND #$007F
 
 Then execute the binary :   
-`./ebsrc-searcher /path/to/ebsrc-to-listing /path/to/target-text.txt`   
+
+    ./ebsrc-searcher /path/to/ebsrc-to-listing /path/to/target-text.txt
 You will get an output similar to this :   
 
     >>> unknown/EF/EF01D2.asm
