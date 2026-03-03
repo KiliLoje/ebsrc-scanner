@@ -53,7 +53,7 @@ instrucion set
 */
 std::vector<std::string>
 scan_file(std::ifstream &file, const std::vector<std::string> &instruction_set,
-          std::vector<std::string> ebscr_data) {
+          std::vector<std::string> &ebscr_data) {
 
   // intitialize variables
   int instruction_index = 0;
@@ -121,7 +121,7 @@ scan_dir(const std::string &DIR_PATH,
   for (const auto &entry : fs::recursive_directory_iterator(DIR_PATH)) {
     // skip non plain text files
     if (!entry.is_regular_file()) {
-      return {};
+      continue;
     }
 
     // intitialize file
